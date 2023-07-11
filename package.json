@@ -17,16 +17,21 @@
 		"eslint": "^8.44.0",
 		"pino-pretty": "^10.0.1",
 		"prettier": "^3.0.0",
+		"prisma": "^5.0.0",
 		"tsx": "^3.12.7",
 		"typescript": "^5.1.6"
 	},
 	"dependencies": {
+		"@fastify/auth": "^4.3.0",
 		"@fastify/autoload": "^5.7.1",
 		"@fastify/cors": "^8.3.0",
 		"@fastify/env": "^4.2.0",
 		"@fastify/jwt": "^7.2.0",
 		"@fastify/sensible": "^5.2.0",
+		"@prisma/client": "^5.0.0",
 		"@sinclair/typebox": "^0.29.4",
+		"@types/bcryptjs": "^2.4.2",
+		"bcryptjs": "^2.4.3",
 		"fastify": "^4.19.2"
 	}
 }

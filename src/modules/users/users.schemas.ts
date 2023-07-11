@@ -1,16 +1,22 @@
 import { Type } from "@sinclair/typebox";
+import schemas from "../../lib/schemas";
 
-const getUser = {
-	params: Type.Object({
-		userId: Type.Number(),
-	}),
-	response: Type.Object({
-		user: Type.Object({
-			id: Type.Number(),
-		}),
-	}),
+const getTestUser = {
+  response: Type.Object({
+    user: schemas.user,
+  }),
+};
+
+const getUsers = {
+  queryString: Type.Object({
+    limit: Type.Number(),
+  }),
+  response: Type.Object({
+    users: Type.Array(schemas.user),
+  }),
 };
 
 export default {
-	getUser,
+  getTestUser,
+  getUsers,
 };

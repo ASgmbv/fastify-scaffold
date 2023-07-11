@@ -2,25 +2,32 @@ import { Static } from "@sinclair/typebox";
 import { RouteHandler } from "fastify";
 import usersSchemas from "./users.schemas";
 
-const getUser: RouteHandler<{
-	Params: Static<typeof usersSchemas.getUser.params>;
-	Reply: Static<typeof usersSchemas.getUser.response>;
-}> = async (req, reply) => {
-	const { userId } = req.params;
+const getTestUser: RouteHandler<{
+  Reply: Static<typeof usersSchemas.getTestUser.response>;
+}> = async (req, res) => {
+  return res.code(200).send({
+    user: {
+      email: "hello@world.com",
+    },
+  });
+};
 
-	const users = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const getUsers: RouteHandler<{
+  Querystring: Static<typeof usersSchemas.getUsers.queryString>;
+  Reply: Static<typeof usersSchemas.getUsers.response>;
+}> = async (req, res) => {
+  const { limit = 10 } = req.query;
 
-	if (!users.includes(userId)) {
-		throw req.server.httpErrors.notFound("User Not Found");
-	}
+  const users = await req.server.prisma.user.findMany({
+    take: limit,
+  });
 
-	reply.code(200).send({
-		user: {
-			id: userId,
-		},
-	});
+  return res.code(200).send({
+    users,
+  });
 };
 
 export default {
-	getUser,
+  getUsers,
+  getTestUser,
 };
