@@ -1,10 +1,12 @@
 import fastify, { FastifyInstance } from "fastify";
 import FastifyCors from "@fastify/cors";
 import FastifyEnv from "@fastify/env";
+import FastifyJWT from "@fastify/jwt";
 import FastifySensible from "@fastify/sensible";
 import FastifyAutoload from "@fastify/autoload";
 import path from "path";
 import { envSchema } from "./lib/config";
+import auth from "./plugins/auth";
 
 export function buildServer() {
 	const app: FastifyInstance = fastify({
@@ -29,6 +31,12 @@ export function buildServer() {
 	app.register(FastifyCors);
 
 	app.register(FastifySensible);
+
+	app.register(FastifyJWT, {
+		secret: process.env.JWT_SECRET as string,
+	});
+
+	app.register(auth);
 
 	app.register(FastifyAutoload, {
 		dir: path.join(__dirname, "modules"),
