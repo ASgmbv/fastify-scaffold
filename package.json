@@ -1,0 +1,31 @@
+{
+	"name": "fastify-scaffold",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "NODE_ENV=development tsx watch --clear-screen=false src/server.ts",
+		"build": "tsc",
+		"start": "NODE_ENV=production node ./dist/server.js"
+	},
+	"author": "ASgmbv",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/node": "^20.4.1",
+		"@typescript-eslint/eslint-plugin": "^6.0.0",
+		"@typescript-eslint/parser": "^6.0.0",
+		"eslint": "^8.44.0",
+		"pino-pretty": "^10.0.1",
+		"prettier": "^3.0.0",
+		"tsx": "^3.12.7",
+		"typescript": "^5.1.6"
+	},
+	"dependencies": {
+		"@fastify/autoload": "^5.7.1",
+		"@fastify/cors": "^8.3.0",
+		"@fastify/env": "^4.2.0",
+		"@fastify/sensible": "^5.2.0",
+		"@sinclair/typebox": "^0.29.4",
+		"fastify": "^4.19.2"
+	}
+}
